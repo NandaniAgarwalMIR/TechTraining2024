@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Field_Update</fullName>
+        <field>StageName</field>
+        <literalValue>Proposal/Price Quote</literalValue>
+        <name>Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stage_is_Proposal_Price_Quote</fullName>
+        <field>StageName</field>
+        <literalValue>Proposal/Price Quote</literalValue>
+        <name>Stage is Proposal/Price  Quote</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stage_is_Prospect</fullName>
+        <field>StageName</field>
+        <literalValue>Prospecting</literalValue>
+        <name>Stage is Prospect</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stage_is_Qualifiaction</fullName>
+        <field>StageName</field>
+        <literalValue>Qualification</literalValue>
+        <name>Stage is Qualifiaction</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stage_Status</fullName>
+        <field>StageName</field>
+        <literalValue>Proposal/Price Quote</literalValue>
+        <name>Update_Stage_Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Automate Opportunity Stage progression  based on Amount1</fullName>
+        <actions>
+            <name>Stage_is_Qualifiaction</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>greaterOrEqual</operation>
+            <value>10000</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>lessThan</operation>
+            <value>50000</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Automate Opportunity Stage progression  based on Amount2</fullName>
+        <actions>
+            <name>Stage_is_Proposal_Price_Quote</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>greaterOrEqual</operation>
+            <value>50000</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Automate Opportunity Stage progression based on Amount</fullName>
+        <actions>
+            <name>Stage_is_Prospect</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>lessThan</operation>
+            <value>10000</value>
+        </criteriaItems>
+        <description>Automate Opportunity Stage progression based on Amount</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>update stage status</fullName>
+        <actions>
+            <name>Update_Stage_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.ExpectedRevenue</field>
+            <operation>greaterOrEqual</operation>
+            <value>100</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Close_Date</fullName>
+        <assignedTo>nandani.agarwal@mirketa.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>20</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.CloseDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Close Date</subject>
+    </tasks>
+    <tasks>
+        <fullName>Due_Date_set_as_Close_Date</fullName>
+        <assignedTo>nandani.agarwal@mirketa.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>20</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.CloseDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Due Date set as Close Date</subject>
+    </tasks>
+    <tasks>
+        <fullName>task_for_the_Senior_Review</fullName>
+        <assignedTo>nandani.agarwal@mirketa.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>20</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.CloseDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>task for the Senior Review</subject>
+    </tasks>
+</Workflow>

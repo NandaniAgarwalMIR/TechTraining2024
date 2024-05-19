@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zip_Code</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT( ISBLANK( Zip_Code__c ) ), OR( Zip_Code__c &gt;99999, Zip_Code__c &lt;10000)  )</errorConditionFormula>
+    <errorMessage>Zip Code must be in 5-digit format (0-9)</errorMessage>
+</ValidationRule>
